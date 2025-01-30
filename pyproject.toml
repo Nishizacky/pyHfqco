@@ -2,12 +2,13 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
-name = "hfqco_Nishizacky"
+name = "hfqco"
 version = "0.0.1"
 authors = [{name="Kai Nishizaki",email="zacky4.net@gmail.com"}]
 description = "margin checker for hfq circuits"
 readme = "README.md"
 requires-python = ">=3.9"
+dependencies = ["pandas", "numpy", "matplotlib","tqdm"]
 classifiers = ["Programming Language :: Python :: 3.9","Operating System :: OS Independent",]
 license = { file = "LICENSE" }
 [project.urls]
