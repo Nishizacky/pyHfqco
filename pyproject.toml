@@ -1,0 +1,14 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[project]
+name = "hfqco_Nishizacky"
+version = "0.0.1"
+authors = [{name="Kai Nishizaki",email="zacky4.net@gmail.com"}]
+description = "margin checker for hfq circuits"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = ["Programming Language :: Python :: 3.9","Operating System :: OS Independent",]
+license = { file = "LICENSE" }
+[project.urls]
+Homepage ="https://github.com/Nishizacky/pyHfqco"
