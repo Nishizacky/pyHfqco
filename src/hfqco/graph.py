@@ -48,7 +48,6 @@ def time_graph(
     ylabel: str,
     y_axis: str = "",
     x_axis: str = "",
-    pi:bool = False,
     blackstyle: bool = False,
     savefile:str = None,
 ):
@@ -79,15 +78,10 @@ def time_graph(
         df.plot(style=linestyle, color="black")
     else:
         df.plot()
-    if pi:
-        y_max = df.max().max()
-        y_min = df.min().min()
-        y_ticks = np.arange(y_min, y_max, np.pi)
-        y_labels = [f'{int(tick/np.pi)}π' if tick != 0 else '0' for tick in y_ticks]
-        plt.yticks(y_ticks, y_labels)
     plt.xlabel("Time [" + x_axis + "]", size=24)  # x軸指定
     plt.ylabel(ylabel + " [" + y_axis + "]", size=24)  # y軸指定
     pltConfig(savefile=savefile)
+
 
 
 def sim_plot(
@@ -137,12 +131,14 @@ def sim_plot(
                     plt.xlabel("Time [" + timescale + "]", size=8)  # x軸指定
                     plt.ylabel("Phase [rad]", size=8)  # y軸指定
                     plt.legend(loc="lower right", fontsize=8)            
+        y_ticks = np.arange(-300, 300, np.pi/2)
+        y_labels = [f'{int(tick/np.pi)}π' if tick != 0 else '0' for tick in y_ticks]
+        plt.yticks(y_ticks, y_labels)
         time_graph(
             df.filter(items=phase_list),
             ylabel="Phase difference",
             y_axis="rad",
             x_axis=timescale,
-            pi = True
         )
     voltage_list = list(
         filter(lambda s: re.search("V\(.+\)", s, flags=re.IGNORECASE), l)
@@ -216,7 +212,7 @@ def margin_plot(
     # plt.subplots_adjust(wspace=0, bottom=100)  # 下部の余白を調整
     # fig.suptitle("Margins[%]", x=0.5, y=-0.05)  # タイトルの位置を調整
     plt.subplots_adjust(wspace=0)
-    fig.suptitle("Margins[%]", x=0.5, y=0)
+    fig.suptitle("Margins[%]", x=0.5, y=-0.15)
     # axes[0].set_ylabel("Elements", fontsize=20)
     # axes[1].set_xlabel("Margin[%]", fontsize=20)
 
